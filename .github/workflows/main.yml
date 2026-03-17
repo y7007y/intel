@@ -20,10 +20,14 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      - name: 检查当前目录文件 (排查用)
+        run: ls -R
+
       - name: Run search script
         env:
-          MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 自动引用系统的Token
-        run: python main.py
+          MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # 使用 ./ 强制指向当前根目录
+        run: python ./main.py
 
       - name: Commit and Push
         run: |
